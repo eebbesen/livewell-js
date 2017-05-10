@@ -7,6 +7,7 @@ var incomeLimits = {
     'p50': 30050,
     'p60': 36060,
     'p80': 46000,
+    'p100': 57500,
     'year': 2016
   },
   '2': {
@@ -14,6 +15,7 @@ var incomeLimits = {
     'p50': 34350,
     'p60': 41220,
     'p80': 52600,
+    'p100': 65750,
     'year': 2016
   },
   '3': {
@@ -21,6 +23,7 @@ var incomeLimits = {
     'p50': 38650,
     'p60': 46380,
     'p80': 59150,
+    'p100': 73937,
     'year': 2016
   },
   '4': {
@@ -28,6 +31,7 @@ var incomeLimits = {
     'p50': 42900,
     'p60': 51480,
     'p80': 65700,
+    'p100': 82125,
     'year': 2016
   },
   '5': {
@@ -35,6 +39,7 @@ var incomeLimits = {
     'p50': 46350,
     'p60': 55620,
     'p80': 71000,
+    'p100': 88750,
     'year': 2016
   },
   '6': {
@@ -42,6 +47,7 @@ var incomeLimits = {
     'p50': 49800,
     'p60': 59760,
     'p80': 76250,
+    'p100': 95312,
     'year': 2016
   },
   '7': {
@@ -49,6 +55,7 @@ var incomeLimits = {
     'p50': 53200,
     'p60': 63840,
     'p80': 81500,
+    'p100': 101875,
     'year': 2016
   },
   '8': {
@@ -56,6 +63,7 @@ var incomeLimits = {
     'p50': 56650,
     'p60': 67980,
     'p80': 86750,
+    'p100': 108437,
     'year': 2016
   }
 }
@@ -76,7 +84,7 @@ app.get('/incomelimits', function(req, res){
 
 app.get('/incomelimits/:people', function(req, res){
   var people = req.params.people;
-  res.render('show', {incomeLimits: incomeLimits[people], people: people})
+  res.render('show', {incomeLimits: incomeLimits[people], people: people, income: 18000})
 });
 
 
