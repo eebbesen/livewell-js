@@ -1,0 +1,4 @@
+<h2>Income Limits for <%=people%> eligible household members:</h2>
+<% ['30','50','60','80'].forEach(function(percent){ %>
+  <p><%=percent%>%: <%=incomeLimits['p'+percent]%></p>
+<%});%>
