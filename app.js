@@ -75,7 +75,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.listen(3000, function(){
   console.log('listening at port 3000');
-  console.log(incomeLimits);
 });
 
 app.get('/incomelimits', function(req, res){
@@ -84,7 +83,7 @@ app.get('/incomelimits', function(req, res){
 
 app.get('/incomelimits/:people', function(req, res){
   var people = req.params.people;
-  res.render('show', {incomeLimits: incomeLimits[people], people: people, income: 18000})
+  res.render('show', {incomeLimits: incomeLimits[people], people: people, income: 18000 * people})
 });
 
 
