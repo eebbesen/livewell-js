@@ -83,7 +83,7 @@ app.get('/incomelimits', function(req, res){
 
 app.get('/incomelimits/:people', function(req, res){
   var people = req.params.people;
-  res.render('show', {incomeLimits: incomeLimits[people], people: people, income: 18000 * people})
+  res.render('show', {incomeLimits: incomeLimits[people], people: people})
 });
 
 
