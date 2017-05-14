@@ -12,12 +12,22 @@
     crossorigin="anonymous">
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
-  <% var chartPeople = people; %>
   <% var chartIncomeLimits = incomeLimits; %>
   <% var chartTickPositions = [incomeLimits['p30'], incomeLimits['p50'], incomeLimits['p60'], incomeLimits['p80'], incomeLimits['p100']]%>
+  <% var formatter = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 2,
+    }); %>
 
   <script>
     var oldIncome = null;
+
+    var formatter = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 2,
+    });
 
     function chartKey(event, income){
       if (event.keyCode == 13) {
@@ -33,14 +43,13 @@
         oldIncome = income;
       }
 
-      var chartIncome = parseInt(income);
       var gaugeOptions = {
         chart: {
           type: 'solidgauge'
         },
         series: [{
           name: 'Income Limits',
-          data: [chartIncome],
+          data: [parseInt(income)],
           dataLabels: {
             format: '<div style="text-align:center"><span style="font-size:25px;color:' +
               ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
@@ -118,8 +127,16 @@
     <div class="ui input"><input type="text" name="income" onblur="charts(this.value);" onkeyup="chartKey(event, this.value);"></div>
     <div class="ui list">
       <% ['30','50','60','80', '100'].forEach(function(percent){ %>
-        <div class="item"><b><%=percent%>%:</b> <%=incomeLimits['p'+percent]%></div>
-      <%});%>
+        <% var amount = formatter.format(incomeLimits['p'+percent]) %>
+        <div class="item">
+          <div class="ui grid">
+            <div class="four wide column"></div>
+            <div class="four wide column pct"><%=percent%>%</div>
+            <div class="four wide column amt"><%=amount%></div>
+            <div class="four wide column"></div>
+          </div>
+        </div>
+      <% }); %>
     </div>
   </div>
 </body>
