@@ -73,8 +73,8 @@ var app = express();
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.listen(3000, function(){
-  console.log('listening at port 3000');
+var server = app.listen(process.env.PORT || 8080, function(){
+  console.log('listening at port ' +  server.address().port);
 });
 
 app.get('/incomelimits', function(req, res){
